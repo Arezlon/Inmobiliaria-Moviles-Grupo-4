@@ -1,4 +1,4 @@
-package com.example.plantilla.modelo;
+package com.grupo4.inmobiliaria.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,12 +11,12 @@ public class Inmueble implements Serializable {
     private String tipo;
     private int ambientes;
     private double precio;
-    private Propietario propietario;
+    private com.grupo4.inmobiliaria.modelo.Propietario propietario;
     //En falso significa que el innmueble no está disponible por alguna falla en el mismo.
     private boolean estado=true;
     private String imagen;
 
-    public Inmueble(int idInmueble, String direccion, String uso, String tipo, int ambientes, double precio, Propietario propietario, boolean estado, String imagen) {
+    public Inmueble(int idInmueble, String direccion, String uso, String tipo, int ambientes, double precio, com.grupo4.inmobiliaria.modelo.Propietario propietario, boolean estado, String imagen) {
         this.idInmueble = idInmueble;
         this.direccion = direccion;
         this.uso = uso;
@@ -78,11 +78,11 @@ public class Inmueble implements Serializable {
         this.precio = precio;
     }
 
-    public Propietario getPropietario() {
+    public com.grupo4.inmobiliaria.modelo.Propietario getPropietario() {
         return propietario;
     }
 
-    public void setPropietario(Propietario propietario) {
+    public void setPropietario(com.grupo4.inmobiliaria.modelo.Propietario propietario) {
         this.propietario = propietario;
     }
 

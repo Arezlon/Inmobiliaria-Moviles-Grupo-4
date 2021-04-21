@@ -1,4 +1,4 @@
-package com.example.plantilla.modelo;
+package com.grupo4.inmobiliaria.modelo;
 
 import java.util.Objects;
 

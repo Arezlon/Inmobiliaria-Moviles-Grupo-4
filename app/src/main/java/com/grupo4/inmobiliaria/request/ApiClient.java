@@ -1,6 +1,6 @@
-package com.example.plantilla.request;
+package com.grupo4.inmobiliaria.request;
 
-import com.example.plantilla.modelo.*;
+import com.grupo4.inmobiliaria.modelo.*;
 
 import java.util.ArrayList;
 
