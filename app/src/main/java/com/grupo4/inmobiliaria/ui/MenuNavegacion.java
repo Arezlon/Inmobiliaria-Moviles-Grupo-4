@@ -1,6 +1,7 @@
 package com.grupo4.inmobiliaria.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -40,7 +41,7 @@ public class MenuNavegacion extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_inicio, R.id.nav_perfil, R.id.nav_inmuebles ,R.id.nav_contratos)
+                R.id.nav_inicio, R.id.nav_perfil, R.id.nav_inmuebles ,R.id.nav_contratos, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -60,5 +61,9 @@ public class MenuNavegacion extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void Prueba(){
+        Log.d("pruebas", "xd");
     }
 }
