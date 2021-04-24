@@ -1,7 +1,6 @@
 package com.grupo4.inmobiliaria.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -61,9 +60,5 @@ public class MenuNavegacion extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public void Prueba(){
-        Log.d("pruebas", "xd");
     }
 }
