@@ -1,16 +1,16 @@
-package com.grupo4.inmobiliaria.ui.ui.gallery;
+package com.grupo4.inmobiliaria.ui.ui.inicio;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class InicioViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public InicioViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("Inicio");
     }
 
     public LiveData<String> getText() {
