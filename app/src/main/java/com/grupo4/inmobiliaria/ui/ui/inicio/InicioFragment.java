@@ -48,11 +48,11 @@ public class InicioFragment extends Fragment {
 
             map = googleMap;
 
-            map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+            map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
             CameraPosition camPosition = new CameraPosition.Builder()
                     .target(INMOBILIARIA) // Objetivo en el mapa
-                    .zoom(19)             // Zoom
+                    .zoom(17)             // Zoom
                     .bearing(45)          // Angulo de inclinacion
                     .tilt(70)             // Angulo de inclinacion
                     .build();
