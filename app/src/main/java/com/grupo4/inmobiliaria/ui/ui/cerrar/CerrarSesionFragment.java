@@ -28,7 +28,7 @@ public class CerrarSesionFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         cerrarSesionViewModel =
                 new ViewModelProvider(this).get(CerrarSesionViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_inicio, container, false);
+        View root = inflater.inflate(R.layout.fragment_cerrarsesion, container, false);
 
 
         return root;

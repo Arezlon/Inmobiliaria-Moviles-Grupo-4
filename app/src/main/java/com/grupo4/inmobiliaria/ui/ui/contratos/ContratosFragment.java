@@ -23,7 +23,7 @@ public class ContratosFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         contratosViewModel =
                 new ViewModelProvider(this).get(ContratosViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_inicio, container, false);
+        View root = inflater.inflate(R.layout.fragment_contratos, container, false);
 
         return root;
     }

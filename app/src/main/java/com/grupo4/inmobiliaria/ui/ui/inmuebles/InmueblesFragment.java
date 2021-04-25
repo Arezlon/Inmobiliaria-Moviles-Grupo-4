@@ -23,7 +23,7 @@ public class InmueblesFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         inmueblesViewModel =
                 new ViewModelProvider(this).get(InmueblesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_inicio, container, false);
+        View root = inflater.inflate(R.layout.fragment_inmuebles, container, false);
 
         return root;
     }
