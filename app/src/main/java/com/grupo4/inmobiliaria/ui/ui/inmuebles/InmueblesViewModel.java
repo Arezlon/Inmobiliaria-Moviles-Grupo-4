@@ -4,16 +4,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.grupo4.inmobiliaria.modelo.Inmueble;
+import com.grupo4.inmobiliaria.request.ApiClient;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class InmueblesViewModel extends ViewModel {
+    public MutableLiveData<ArrayList<Inmueble>> inmueblesMutable;
 
-    private MutableLiveData<String> mText;
-
-    public InmueblesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("Inmuebles");
+    public LiveData<ArrayList<Inmueble>> getInmueblesMutable(){
+        if (inmueblesMutable == null){
+            inmueblesMutable = new MutableLiveData<>();
+        }
+        return inmueblesMutable;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void LeerInmuebles(){
+        ApiClient api = ApiClient.getApi();
+        ArrayList<Inmueble> inmuebles = api.obtnerPropiedades();
+
+        inmueblesMutable.setValue(inmuebles);
     }
 }
