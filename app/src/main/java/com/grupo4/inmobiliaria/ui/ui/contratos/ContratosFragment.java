@@ -24,13 +24,7 @@ public class ContratosFragment extends Fragment {
         contratosViewModel =
                 new ViewModelProvider(this).get(ContratosViewModel.class);
         View root = inflater.inflate(R.layout.fragment_inicio, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        contratosViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

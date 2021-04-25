@@ -24,13 +24,7 @@ public class InmueblesFragment extends Fragment {
         inmueblesViewModel =
                 new ViewModelProvider(this).get(InmueblesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_inicio, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        inmueblesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

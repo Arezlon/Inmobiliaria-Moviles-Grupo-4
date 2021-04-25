@@ -9,28 +9,63 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.grupo4.inmobiliaria.R;
 
 
 public class InicioFragment extends Fragment {
 
-    private InicioViewModel inicioViewModel;
+    private static final LatLng INMOBILIARIA = new LatLng(-33.150720, -66.306864);
+    private GoogleMap map;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        inicioViewModel =
-                new ViewModelProvider(this).get(InicioViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_inicio, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        inicioViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        super.onCreate(savedInstanceState);
+
+        View view = inflater.inflate(R.layout.fragment_inicio, container, false);
+
+        ((SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map)).getMapAsync(new Mapa());
+
+        return view;
+    }
+
+    private class Mapa implements OnMapReadyCallback {
+
+        @Override
+        public void onMapReady (GoogleMap googleMap) {
+
+            map = googleMap;
+
+            map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+            CameraPosition camPosition = new CameraPosition.Builder()
+                    .target(INMOBILIARIA) // Objetivo en el mapa
+                    .zoom(19)             // Zoom
+                    .bearing(45)          // Angulo de inclinacion
+                    .tilt(70)             // Angulo de inclinacion
+                    .build();
+
+            // Pasar efectos al mapa
+            CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPosition);
+            map.animateCamera(camUpdate);
+
+            // Agregar marcador
+            map.addMarker(new MarkerOptions()
+                        .position(INMOBILIARIA))
+                        .setTitle("Inmobiliaria Grupo 4");
+
+        }
     }
 }

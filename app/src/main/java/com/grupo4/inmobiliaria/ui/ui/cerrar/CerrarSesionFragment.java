@@ -29,13 +29,7 @@ public class CerrarSesionFragment extends Fragment {
         cerrarSesionViewModel =
                 new ViewModelProvider(this).get(CerrarSesionViewModel.class);
         View root = inflater.inflate(R.layout.fragment_inicio, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        cerrarSesionViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
 
         return root;
     }
