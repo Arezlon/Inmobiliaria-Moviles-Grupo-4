@@ -54,7 +54,7 @@ public class InicioFragment extends Fragment {
                     .target(INMOBILIARIA) // Objetivo en el mapa
                     .zoom(17)             // Zoom
                     .bearing(45)          // Angulo de inclinacion
-                    .tilt(70)             // Angulo de inclinacion
+                    .tilt(60)             // Angulo de inclinacion
                     .build();
 
             // Pasar efectos al mapa
