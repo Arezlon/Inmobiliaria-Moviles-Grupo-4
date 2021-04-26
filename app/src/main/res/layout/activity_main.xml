@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -81,5 +81,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etClave" />
+
+    <Button
+        android:id="@+id/btMostrarContraseña"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="1dp"
+        android:gravity="center_horizontal|top"
+        app:icon="@drawable/outline_visibility_24"
+        app:iconGravity="top"
+        app:iconPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etClave"
+        app:layout_constraintStart_toEndOf="@+id/etClave"
+        app:layout_constraintTop_toTopOf="@+id/etClave"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
