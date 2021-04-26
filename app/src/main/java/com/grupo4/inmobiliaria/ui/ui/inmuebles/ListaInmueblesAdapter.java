@@ -1,6 +1,8 @@
 package com.grupo4.inmobiliaria.ui.ui.inmuebles;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -42,8 +45,17 @@ public class ListaInmueblesAdapter extends ArrayAdapter<Inmueble> {
         ImageView ivFoto = convertView.findViewById(R.id.ivFoto);
 
         tvDireccion.setText(inmueble.getDireccion());
-        tvPrecio.setText("$"+String.valueOf(inmueble.getPrecio()));
+        tvPrecio.setText("$"+inmueble.getPrecio());
         Glide.with(getContext()).load(inmueble.getImagen()).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivFoto);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle b = new Bundle();
+                b.putSerializable("inmueble", inmueble);
+                Navigation.findNavController((Activity)context, R.id.nav_host_fragment).navigate(R.id.nav_inmueble, b);
+            }
+        });
 
         return convertView;
     }
