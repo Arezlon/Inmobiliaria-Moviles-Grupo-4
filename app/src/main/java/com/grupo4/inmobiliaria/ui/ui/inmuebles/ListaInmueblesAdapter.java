@@ -26,11 +26,15 @@ public class ListaInmueblesAdapter extends ArrayAdapter<Inmueble> {
     private List<Inmueble> inmuebles;
     private LayoutInflater inflater;
 
-    public ListaInmueblesAdapter(@NonNull Context context, int resource, @NonNull List<Inmueble> objects, LayoutInflater layoutInflater) {
+    int vistaDetallesOnClick;
+
+    public ListaInmueblesAdapter(@NonNull Context context, int resource, @NonNull List<Inmueble> objects, LayoutInflater layoutInflater, int vistaDetallesOnClick) {
         super(context, resource, objects);
         this.context = context;
         this.inmuebles = objects;
         this.inflater = layoutInflater;
+
+        this.vistaDetallesOnClick = vistaDetallesOnClick;
     }
 
     @NonNull
@@ -53,7 +57,7 @@ public class ListaInmueblesAdapter extends ArrayAdapter<Inmueble> {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 b.putSerializable("inmueble", inmueble);
-                Navigation.findNavController((Activity)context, R.id.nav_host_fragment).navigate(R.id.nav_inmueble, b);
+                Navigation.findNavController((Activity)context, R.id.nav_host_fragment).navigate(vistaDetallesOnClick, b);
             }
         });
 

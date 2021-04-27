@@ -33,8 +33,8 @@ public class InmueblesFragment extends Fragment {
         inmueblesViewModel.getInmueblesMutable().observe(getViewLifecycleOwner(), new Observer<ArrayList<Inmueble>>() {
             @Override
             public void onChanged(ArrayList<Inmueble> inmuebles) {
-                //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, lista);
-                ArrayAdapter<Inmueble> adapter = new ListaInmueblesAdapter(getContext(), R.layout.list_item_inmueble, inmuebles, getLayoutInflater());
+
+                ArrayAdapter<Inmueble> adapter = new ListaInmueblesAdapter(getContext(), R.layout.list_item_inmueble, inmuebles, getLayoutInflater(), R.id.nav_inmueble);
                 lvInmuebles.setAdapter(adapter);
             }
         });
