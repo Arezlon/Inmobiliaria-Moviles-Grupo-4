@@ -26,4 +26,10 @@ public class InmuebleViewModel extends ViewModel {
         Inmueble inmueble = (Inmueble)bundle.getSerializable("inmueble");
         inmuebleMutable.setValue(inmueble);
     }
+
+    public void CambioEstado(Inmueble inmueble){
+        inmueble.setEstado(!inmueble.isEstado());
+        ApiClient.getApi().actualizarInmueble(inmueble);
+        inmuebleMutable.setValue(inmueble);
+    }
 }

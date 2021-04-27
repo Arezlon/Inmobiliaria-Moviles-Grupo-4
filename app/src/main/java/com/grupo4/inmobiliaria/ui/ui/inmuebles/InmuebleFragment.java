@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,14 +20,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.grupo4.inmobiliaria.R;
 import com.grupo4.inmobiliaria.modelo.Inmueble;
 
-import java.util.ArrayList;
-
 public class InmuebleFragment extends Fragment {
 
     private InmuebleViewModel inmuebleViewModel;
     private TextView tvDireccion2, tvPrecio2, tvTipo, tvUso, tvAmbientes;
-    private Button btnDeshabilitar;
     private ImageView ivFoto2;
+
+    private Switch swEstado;
+
+    private Inmueble inmueble;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,13 +39,23 @@ public class InmuebleFragment extends Fragment {
         InicializarVista(root);
         inmuebleViewModel.getInmuebleMutable().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
-            public void onChanged(Inmueble inmueble) {
+            public void onChanged(Inmueble i) {
+                inmueble = i;
                 tvDireccion2.setText(inmueble.getDireccion());
                 tvPrecio2.setText("Precio: $"+inmueble.getPrecio());
                 tvTipo.setText("Tipo: "+inmueble.getTipo());
                 tvUso.setText("Uso: "+inmueble.getUso());
                 tvAmbientes.setText("Ambientes: "+inmueble.getAmbientes());
                 Glide.with(getContext()).load(inmueble.getImagen()).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivFoto2);
+
+                swEstado.setChecked(inmueble.isEstado());
+                swEstado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (inmueble != null)
+                            inmuebleViewModel.CambioEstado(inmueble);
+                    }
+                });
             }
         });
         inmuebleViewModel.LeerInmueble(getArguments());
@@ -58,6 +69,8 @@ public class InmuebleFragment extends Fragment {
         tvUso = root.findViewById(R.id.tvUso);
         tvAmbientes = root.findViewById(R.id.tvAmbientes);
         ivFoto2 = root.findViewById(R.id.ivFoto2);
-        btnDeshabilitar = root.findViewById(R.id.btnDeshabilitar);
+        swEstado = root.findViewById(R.id.swEstado);
+
+
     }
 }
