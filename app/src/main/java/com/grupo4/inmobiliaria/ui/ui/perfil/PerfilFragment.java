@@ -1,15 +1,18 @@
 package com.grupo4.inmobiliaria.ui.ui.perfil;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.grupo4.inmobiliaria.R;
 import com.grupo4.inmobiliaria.modelo.Propietario;
@@ -23,6 +26,7 @@ public class PerfilFragment extends Fragment {
     public TextView tvUserDni;
     public TextView tvUserEmail;
     public TextView tvUserPhone;
+    public Button btEditar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,5 +56,12 @@ public class PerfilFragment extends Fragment {
         tvUserDni = v.findViewById(R.id.tvUserDni);
         tvUserEmail = v.findViewById(R.id.tvUserEmail);
         tvUserPhone = v.findViewById(R.id.tvUserPhone);
+        btEditar = v.findViewById(R.id.btEditar);
+        btEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController((Activity)getContext(), R.id.nav_host_fragment).navigate(R.id.nav_perfil_editar);
+            }
+        });
     }
 }
