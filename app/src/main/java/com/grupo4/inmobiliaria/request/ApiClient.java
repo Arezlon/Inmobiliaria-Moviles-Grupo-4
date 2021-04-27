@@ -149,7 +149,7 @@ public Propietario login(String mail, final String password){
         inmuebles.add(casita);
 
         //Contratos
-        Contrato uno=new Contrato(701, "05/01/2020","05/01/2021",17000,mario,otraCasa);
+        Contrato uno=new Contrato(701, "05/01/2020","05/01/2021",17000,mario,casa);
         contratos.add(uno);
         //Pagos
         pagos.add(new Pago(900,1,uno,17000,"10/02/2020"));

@@ -1,5 +1,6 @@
 package com.grupo4.inmobiliaria.ui.ui.inmuebles;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +15,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.grupo4.inmobiliaria.R;
 import com.grupo4.inmobiliaria.modelo.Inmueble;
+import com.grupo4.inmobiliaria.request.ApiClient;
 
 public class InmuebleFragment extends Fragment {
 
     private InmuebleViewModel inmuebleViewModel;
     private TextView tvDireccion2, tvPrecio2, tvTipo, tvUso, tvAmbientes;
     private ImageView ivFoto2;
-
+    private Button btContratoInmueble;
     private Switch swEstado;
 
     private Inmueble inmueble;
@@ -37,6 +40,8 @@ public class InmuebleFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_inmueble, container, false);
 
         InicializarVista(root);
+
+        // Mostrar datos del inmueble
         inmuebleViewModel.getInmuebleMutable().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
             public void onChanged(Inmueble i) {
@@ -56,8 +61,28 @@ public class InmuebleFragment extends Fragment {
                             inmuebleViewModel.CambioEstado(inmueble);
                     }
                 });
+
+                inmuebleViewModel.ConsultarContratoVigente(inmueble);
             }
         });
+
+        // Comprobar si el inmueble tiene o no un contrato vigente
+        inmuebleViewModel.getContratoVigenteMutable().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean contratoVigente) {
+                btContratoInmueble.setVisibility(contratoVigente ? View.VISIBLE : View.INVISIBLE);
+                if (contratoVigente){
+                    btContratoInmueble.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Navegar a los detalles del contrato vigente de este inmueble
+                            //Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_contrato, inmueble);
+                        }
+                    });
+                }
+            }
+        });
+
         inmuebleViewModel.LeerInmueble(getArguments());
         return root;
     }
@@ -70,7 +95,6 @@ public class InmuebleFragment extends Fragment {
         tvAmbientes = root.findViewById(R.id.tvAmbientes);
         ivFoto2 = root.findViewById(R.id.ivFoto2);
         swEstado = root.findViewById(R.id.swEstado);
-
-
+        btContratoInmueble = root.findViewById(R.id.btContratoInmueble);
     }
 }
