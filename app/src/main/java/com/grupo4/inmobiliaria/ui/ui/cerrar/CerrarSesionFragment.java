@@ -22,6 +22,7 @@ import com.grupo4.inmobiliaria.ui.MenuNavegacion;
 
 public class CerrarSesionFragment extends Fragment {
 
+    private boolean cerrar = false;
     private CerrarSesionViewModel cerrarSesionViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,12 +44,14 @@ public class CerrarSesionFragment extends Fragment {
                 .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
-                        startActivity(new Intent(getActivity(), MenuNavegacion.class));
+                        if(!cerrar)
+                            startActivity(new Intent(getActivity(), MenuNavegacion.class));
                     }
                 })
-                .setPositiveButton("Cerrar", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Salir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        cerrar = true;
                         startActivity(new Intent(getActivity(), MainActivity.class));
                     }
                 }).show();
