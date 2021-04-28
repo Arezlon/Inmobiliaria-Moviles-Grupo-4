@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.grupo4.inmobiliaria.MainActivity;
 import com.grupo4.inmobiliaria.R;
 import com.grupo4.inmobiliaria.modelo.Propietario;
 
@@ -37,6 +39,7 @@ public class EditarPerfilFragment extends Fragment {
     public EditText etEditarEmailUsuario;
     public EditText etEditarTelefonoUsuario;
     public Button btGuardar;
+    private Propietario propietarioActual;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         editarPerfilViewModel = new ViewModelProvider(this).get(EditarPerfilViewModel.class);
@@ -46,6 +49,7 @@ public class EditarPerfilFragment extends Fragment {
         editarPerfilViewModel.getPropietarioMutable().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
             @Override
             public void onChanged(Propietario propietario) {
+                propietarioActual = propietario;
                 tvUsuarioId.setText("Editando el usuario: #"+propietario.getId());
                 etEditarNombreUsuario.setText(propietario.getNombre());
                 etEditarApellidoUsuario.setText(propietario.getApellido());
@@ -71,7 +75,15 @@ public class EditarPerfilFragment extends Fragment {
         btGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController((Activity)getContext(), R.id.nav_host_fragment).navigate(R.id.nav_perfil_editar);
+                propietarioActual.setNombre(etEditarNombreUsuario.getText().toString());
+                propietarioActual.setApellido(etEditarApellidoUsuario.getText().toString());
+                propietarioActual.setDni(Long.parseLong(etEditarDniUsuario.getText().toString()));
+                propietarioActual.setEmail(etEditarEmailUsuario.getText().toString());
+                propietarioActual.setTelefono(etEditarTelefonoUsuario.getText().toString());
+
+                editarPerfilViewModel.ModificarPropietario(propietarioActual);
+                //Navigation.findNavController((Activity)getContext(), R.id.nav_host_fragment).navigate(R.id.nav_perfil);
+                startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
     }
