@@ -50,7 +50,7 @@ public class EditarPerfilFragment extends Fragment {
             @Override
             public void onChanged(Propietario propietario) {
                 propietarioActual = propietario;
-                tvUsuarioId.setText("Editando el usuario: #"+propietario.getId());
+                tvUsuarioId.setText("Editando el usuario #"+propietario.getId());
                 etEditarNombreUsuario.setText(propietario.getNombre());
                 etEditarApellidoUsuario.setText(propietario.getApellido());
                 etEditarDniUsuario.setText(String.valueOf(propietario.getDni()));

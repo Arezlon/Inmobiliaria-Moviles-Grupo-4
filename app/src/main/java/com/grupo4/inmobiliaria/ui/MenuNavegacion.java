@@ -48,12 +48,12 @@ public class MenuNavegacion extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_navegacion, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onSupportNavigateUp() {

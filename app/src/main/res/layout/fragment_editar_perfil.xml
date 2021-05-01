@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.ui.perfil.EditarPerfilFragment">
 
+    <View
+        style="@style/Divisor"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btGuardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        style="@style/Divisor"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvNombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/btGuardar"
         android:layout_width="wrap_content"
@@ -75,6 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:textSize="24dp"
         android:text="Editando el usuario #ID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,8 +97,9 @@
 
     <TextView
         android:id="@+id/tvNombre"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:gravity="left"
         android:layout_marginTop="64dp"
         android:text="Nombre"
         app:layout_constraintEnd_toEndOf="@+id/etEditarNombreUsuario"
