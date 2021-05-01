@@ -38,10 +38,10 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onChanged(Propietario propietario) {
                 tvUserId.setText("Usuario #"+propietario.getId());
-                tvUserFullname.setText(propietario.getApellido()+" "+propietario.getNombre());
+                tvUserFullname.setText("Nombre: "+propietario.getApellido()+" "+propietario.getNombre());
                 tvUserDni.setText("DNI: "+propietario.getDni());
                 tvUserEmail.setText("E-Mail: "+propietario.getEmail());
-                tvUserPhone.setText("Tel: "+propietario.getTelefono());
+                tvUserPhone.setText("Teléfono: "+propietario.getTelefono());
             }
         });
         perfilViewModel.LeerPropietario();

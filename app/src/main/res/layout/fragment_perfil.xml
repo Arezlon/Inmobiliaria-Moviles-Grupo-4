@@ -10,7 +10,7 @@
         android:id="@+id/user_avatar"
         android:layout_width="154dp"
         android:layout_height="161dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="placeholder"
         android:src="@drawable/baseline_person_24"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,11 +32,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textSize="24dp"
         android:autoText="false"
         android:text="Usuario #ID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_avatar" />
+
+    <View
+        style="@style/Divisor"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvUserFullname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        style="@style/Divisor"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btEditar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        style="@style/Divisor"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/user_c"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvUserFullname"
@@ -62,8 +84,9 @@
         android:id="@+id/user_c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16dp"
         android:layout_marginTop="24dp"
-        android:text="Datos de contacto"
+        android:text="Datos de contacto:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserDni" />
