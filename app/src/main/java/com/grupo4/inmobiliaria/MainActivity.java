@@ -10,6 +10,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Build;
@@ -92,15 +93,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int pos = etClave.getSelectionStart();
+
                 if (etClave.getTransformationMethod() == PasswordTransformationMethod.getInstance()){
                     etClave.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-
                     btMostrarContraseña.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.outline_visibility_off_24, 0, 0);
                 } else {
                     etClave.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
                     btMostrarContraseña.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.outline_visibility_24, 0, 0);
                 }
+
+                btMostrarContraseña.getCompoundDrawablesRelative()[1].setTint(Color.WHITE);
                 etClave.setSelection(pos);
             }
         });
