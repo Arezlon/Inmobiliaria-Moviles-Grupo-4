@@ -1,6 +1,7 @@
 package com.grupo4.inmobiliaria.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -8,7 +9,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.grupo4.inmobiliaria.R;
+import com.grupo4.inmobiliaria.ui.ui.inicio.InicioFragment;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -54,9 +58,6 @@ public class MenuNavegacion extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_navegacion, menu);
         return true;
     }*/
-
-    @Override
-    public void onBackPressed() { Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_logout); }
 
     @Override
     public boolean onSupportNavigateUp() {

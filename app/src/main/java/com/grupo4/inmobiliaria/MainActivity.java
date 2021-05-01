@@ -73,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        this.moveTaskToBack(true);
+    }
+
     private void inicializarVista(){
         etMail = findViewById(R.id.etMail);
         etClave = findViewById(R.id.etClave);
