@@ -1,9 +1,11 @@
 package com.grupo4.inmobiliaria.ui.ui.perfil;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +25,7 @@ import android.widget.TextView;
 import com.grupo4.inmobiliaria.MainActivity;
 import com.grupo4.inmobiliaria.R;
 import com.grupo4.inmobiliaria.modelo.Propietario;
+import com.grupo4.inmobiliaria.ui.MenuNavegacion;
 
 public class EditarPerfilFragment extends Fragment {
 
@@ -46,6 +50,24 @@ public class EditarPerfilFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_editar_perfil, container, false);
 
         InicializarVista(root);
+        editarPerfilViewModel.getErrorMutable().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if(s == "EXITO")
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                else{
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Error")
+                            .setMessage(s)
+                            .setPositiveButton("Salir", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
+                }
+            }
+        });
         editarPerfilViewModel.getPropietarioMutable().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
             @Override
             public void onChanged(Propietario propietario) {
@@ -77,13 +99,11 @@ public class EditarPerfilFragment extends Fragment {
             public void onClick(View v) {
                 propietarioActual.setNombre(etEditarNombreUsuario.getText().toString());
                 propietarioActual.setApellido(etEditarApellidoUsuario.getText().toString());
-                propietarioActual.setDni(Long.parseLong(etEditarDniUsuario.getText().toString()));
+                propietarioActual.setDni(TextUtils.isEmpty(etEditarDniUsuario.getText())? -1 : Long.parseLong(etEditarDniUsuario.getText().toString()));
                 propietarioActual.setEmail(etEditarEmailUsuario.getText().toString());
                 propietarioActual.setTelefono(etEditarTelefonoUsuario.getText().toString());
 
                 editarPerfilViewModel.ModificarPropietario(propietarioActual);
-                //Navigation.findNavController((Activity)getContext(), R.id.nav_host_fragment).navigate(R.id.nav_perfil);
-                startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
     }
