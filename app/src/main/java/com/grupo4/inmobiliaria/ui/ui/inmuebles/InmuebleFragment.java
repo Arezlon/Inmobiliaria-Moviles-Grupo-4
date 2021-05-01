@@ -26,7 +26,7 @@ import com.grupo4.inmobiliaria.request.ApiClient;
 public class InmuebleFragment extends Fragment {
 
     private InmuebleViewModel inmuebleViewModel;
-    private TextView tvDireccion2, tvPrecio2, tvTipo, tvUso, tvAmbientes;
+    private TextView tvDireccion2, tvPrecio2, tvTipo, tvUso, tvAmbientes, tvInmuebleId;
     private ImageView ivFoto2;
     private Button btContratoInmueble;
     private Switch swEstado;
@@ -46,11 +46,12 @@ public class InmuebleFragment extends Fragment {
             @Override
             public void onChanged(Inmueble i) {
                 inmueble = i;
-                tvDireccion2.setText(inmueble.getDireccion());
-                tvPrecio2.setText("Precio: $"+inmueble.getPrecio());
+                tvDireccion2.setText("Dirección: "+inmueble.getDireccion());
+                tvPrecio2.setText("Precio por mes: $"+inmueble.getPrecio());
                 tvTipo.setText("Tipo: "+inmueble.getTipo());
                 tvUso.setText("Uso: "+inmueble.getUso());
                 tvAmbientes.setText("Ambientes: "+inmueble.getAmbientes());
+                tvInmuebleId.setText("Detalles del inmueble #"+inmueble.getIdInmueble());
                 Glide.with(getContext()).load(inmueble.getImagen()).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivFoto2);
 
                 swEstado.setChecked(inmueble.isEstado());
@@ -96,5 +97,6 @@ public class InmuebleFragment extends Fragment {
         ivFoto2 = root.findViewById(R.id.ivFoto2);
         swEstado = root.findViewById(R.id.swEstado);
         btContratoInmueble = root.findViewById(R.id.btContratoInmueble);
+        tvInmuebleId = root.findViewById(R.id.tvInmuebleId);
     }
 }
