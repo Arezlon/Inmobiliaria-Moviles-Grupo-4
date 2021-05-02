@@ -11,20 +11,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
 import com.grupo4.inmobiliaria.R;
 import com.grupo4.inmobiliaria.modelo.Contrato;
 import com.grupo4.inmobiliaria.modelo.Inmueble;
+import com.grupo4.inmobiliaria.modelo.Pago;
 import com.grupo4.inmobiliaria.ui.ui.inmuebles.InmuebleViewModel;
+
+import java.util.List;
 
 public class ContratoFragment extends Fragment {
 
     private ContratoViewModel contratoViewModel;
-    private TextView tvFechaInicio, tvFechaFin, tvInquilino, tvInmueble, tvMonto, tvContratoId;
-
     private Contrato contrato;
+    private List<Pago> pagos;
+
+    private AppBarLayout appBar;
+    private ViewPager viewPage;
+    private TabLayout tabLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -32,17 +42,28 @@ public class ContratoFragment extends Fragment {
                 new ViewModelProvider(this).get(ContratoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_contrato, container, false);
 
-        InicializarVista(root);
-
         contratoViewModel.getContratoMutable().observe(getViewLifecycleOwner(), new Observer<Contrato>() {
             @Override
-            public void onChanged (Contrato contrato) {
-                tvFechaInicio.setText("Fecha de inicio: "+contrato.getFechaInicio());
-                tvFechaFin.setText("Fecha de fin: "+contrato.getFechaFin());
-                tvMonto.setText("Precio por mes: $"+contrato.getMontoAlquiler());
-                tvInquilino.setText("Inquilino: "+contrato.getInquilino().getNombre() + " "+ contrato.getInquilino().getApellido());
-                tvInmueble.setText("Inmueble: "+contrato.getInmueble().getDireccion());
-                tvContratoId.setText("Detalles del contrato #"+contrato.getIdContrato());
+            public void onChanged(Contrato c) {
+                contrato = c;
+                contratoViewModel.LeerPagosContrato(c);
+            }
+        });
+        contratoViewModel.getPagosMutable().observe(getViewLifecycleOwner(), new Observer<List<Pago>>() {
+            @Override
+            public void onChanged(List<Pago> pagos) {
+                viewPage = root.findViewById(R.id.viewPage);
+                appBar = root.findViewById(R.id.appBar);
+
+                tabLayout = new TabLayout(getContext());
+                appBar.addView(tabLayout);
+                ViewPageAdapter vpa = new ViewPageAdapter(getParentFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+                vpa.addFragment(new TabContratoFragment(contrato), "Contrato");
+                vpa.addFragment(new TabInquilinoFragment(contrato.getInquilino()), "Inquilino");
+                vpa.addFragment(new TabPagosFragment(pagos), "Pagos");
+
+                viewPage.setAdapter(vpa);
+                tabLayout.setupWithViewPager(viewPage);
             }
         });
         contratoViewModel.LeerContrato(getArguments());
@@ -50,12 +71,6 @@ public class ContratoFragment extends Fragment {
     }
 
     private void InicializarVista(View root){
-        tvFechaInicio = root.findViewById(R.id.tvFechaInicio);
-        tvFechaFin = root.findViewById(R.id.tvFechaFin);
-        tvMonto = root.findViewById(R.id.tvMontoAlquiler);
-        tvInquilino = root.findViewById(R.id.tvInquilino);
-        tvInmueble = root.findViewById(R.id.tvInmueble);
-        tvContratoId = root.findViewById(R.id.tvContratoId);
     }
 }
 
