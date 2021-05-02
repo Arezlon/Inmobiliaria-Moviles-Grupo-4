@@ -26,7 +26,7 @@ import com.grupo4.inmobiliaria.R;
 
 public class InicioFragment extends Fragment {
 
-    private static final LatLng INMOBILIARIA = new LatLng(-33.150720, -66.306864);
+    private static final LatLng INMOBILIARIA = new LatLng(-32.410615, -65.009314);
     private GoogleMap map;
 
 
@@ -48,7 +48,7 @@ public class InicioFragment extends Fragment {
 
             map = googleMap;
 
-            map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+            map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
             CameraPosition camPosition = new CameraPosition.Builder()
                     .target(INMOBILIARIA) // Objetivo en el mapa

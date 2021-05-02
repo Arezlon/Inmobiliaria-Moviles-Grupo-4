@@ -68,7 +68,7 @@ public class InmuebleFragment extends Fragment {
             }
         });
 
-        // Comprobar si el inmueble tiene o no un contrato vigente
+        // Mostrar boton "Ver Contrato" si el inmueble tiene o no un contrato vigente
         inmuebleViewModel.getContratoVigenteMutable().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean contratoVigente) {

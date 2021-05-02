@@ -43,8 +43,8 @@ public class EditarPerfilViewModel extends ViewModel {
             errorMutable.setValue("El nombre/apellido ingresado no es válido (3 caracteres mínimo, 16 máximo)");
         }else if(!Patterns.EMAIL_ADDRESS.matcher(p.getEmail()).matches()){
             errorMutable.setValue("La dirección de correo electrónico ingresada no es válida.");
-        }else if(p.getTelefono().length() > 15 || p.getTelefono().length() < 10){
-            errorMutable.setValue("El número de teléfono ingresado no es válido (10-15 dígitos)");
+        }else if(p.getTelefono().length() > 15 || p.getTelefono().length() < 9){
+            errorMutable.setValue("El número de teléfono ingresado no es válido (9-15 dígitos)");
         }else{
             ApiClient api = ApiClient.getApi();
             api.actualizarPerfil(p);
