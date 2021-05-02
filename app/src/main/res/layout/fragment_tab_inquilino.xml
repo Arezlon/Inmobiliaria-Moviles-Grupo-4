@@ -19,7 +19,7 @@
         android:id="@+id/tvIdInquilino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="18sp"
         android:text="Inquilino #ID"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Nombre completo"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="DNI"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNombreCompletoInquilino" />
@@ -60,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Lugar de trabajo"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDniInquilino" />
@@ -70,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Email"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTrabajoInquilino" />
@@ -80,6 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Telefono"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEmailInquilino" />
@@ -90,6 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Garante"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -100,6 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Telefono garante"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNombreCompletoGarante" />

@@ -31,7 +31,7 @@ public class TabInquilinoFragment extends Fragment {
 
     private void inicializarVista(View root){
         tvIdInquilino = root.findViewById(R.id.tvIdInquilino);
-        tvIdInquilino.setText("Inquilino #" + inquilino.getIdInquilino());
+        tvIdInquilino.setText("Detalles del inquilino #" + inquilino.getIdInquilino());
         tvNombreCompletoInquilino = root.findViewById(R.id.tvNombreCompletoInquilino);
         tvNombreCompletoInquilino.setText("Nombre: " + inquilino.getNombre() + " " + inquilino.getApellido());
         tvDniInquilino = root.findViewById(R.id.tvDniInquilino);
