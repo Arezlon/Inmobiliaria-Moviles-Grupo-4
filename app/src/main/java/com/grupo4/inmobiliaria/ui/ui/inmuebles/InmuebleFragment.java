@@ -1,6 +1,7 @@
 package com.grupo4.inmobiliaria.ui.ui.inmuebles;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +78,9 @@ public class InmuebleFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             // Navegar a los detalles del contrato vigente de este inmueble
-                            //Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_contrato, inmueble);
+                            Bundle b = new Bundle();
+                            b.putSerializable("inmueble", inmueble);
+                            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_contrato, b);
                         }
                     });
                 }

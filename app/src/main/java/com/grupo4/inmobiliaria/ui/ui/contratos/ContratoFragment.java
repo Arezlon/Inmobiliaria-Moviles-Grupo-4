@@ -51,26 +51,35 @@ public class ContratoFragment extends Fragment {
         });
         contratoViewModel.getPagosMutable().observe(getViewLifecycleOwner(), new Observer<List<Pago>>() {
             @Override
-            public void onChanged(List<Pago> pagos) {
-                viewPage = root.findViewById(R.id.viewPage);
-                appBar = root.findViewById(R.id.appBar);
-
-                tabLayout = new TabLayout(getContext());
-                appBar.addView(tabLayout);
-                ViewPageAdapter vpa = new ViewPageAdapter(getParentFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-                vpa.addFragment(new TabContratoFragment(contrato), "Contrato");
-                vpa.addFragment(new TabInquilinoFragment(contrato.getInquilino()), "Inquilino");
-                vpa.addFragment(new TabPagosFragment(pagos), "Pagos");
-
-                viewPage.setAdapter(vpa);
-                tabLayout.setupWithViewPager(viewPage);
+            public void onChanged(List<Pago> p) {
+                pagos = p;
+                inicializarVista(root);
             }
         });
         contratoViewModel.LeerContrato(getArguments());
         return root;
     }
 
-    private void InicializarVista(View root){
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    private void inicializarVista(View root){
+        viewPage = root.findViewById(R.id.viewPage);
+        appBar = root.findViewById(R.id.appBar);
+        tabLayout = new TabLayout(getContext());
+        appBar.addView(tabLayout);
+
+        if (contrato != null && !pagos.isEmpty()){
+            ViewPageAdapter vpa = new ViewPageAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            vpa.addFragment(new TabContratoFragment(contrato), "Contrato");
+            vpa.addFragment(new TabInquilinoFragment(contrato.getInquilino()), "Inquilino");
+            vpa.addFragment(new TabPagosFragment(pagos), "Pagos");
+
+            viewPage.setAdapter(vpa);
+            tabLayout.setupWithViewPager(viewPage);
+        }
     }
 }
 

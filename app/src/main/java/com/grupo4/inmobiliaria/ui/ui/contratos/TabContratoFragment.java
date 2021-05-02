@@ -3,10 +3,12 @@ package com.grupo4.inmobiliaria.ui.ui.contratos;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.grupo4.inmobiliaria.R;
@@ -14,7 +16,7 @@ import com.grupo4.inmobiliaria.modelo.Contrato;
 
 public class TabContratoFragment extends Fragment {
     private TextView tvFechaInicio, tvFechaFin, tvInquilino, tvInmueble, tvMonto, tvContratoId;
-
+    private Button btInmuebleContrato;
     private Contrato contrato;
 
     public TabContratoFragment(Contrato contrato) {
@@ -38,6 +40,7 @@ public class TabContratoFragment extends Fragment {
         tvInquilino = root.findViewById(R.id.tvInquilino);
         tvInmueble = root.findViewById(R.id.tvInmueble);
         tvContratoId = root.findViewById(R.id.tvContratoId);
+        btInmuebleContrato = root.findViewById(R.id.btInmuebleContrato);
 
         tvFechaInicio.setText("Fecha de inicio: "+contrato.getFechaInicio());
         tvFechaFin.setText("Fecha de fin: "+contrato.getFechaFin());
@@ -45,5 +48,14 @@ public class TabContratoFragment extends Fragment {
         tvInquilino.setText("Inquilino: "+contrato.getInquilino().getNombre() + " "+ contrato.getInquilino().getApellido());
         tvInmueble.setText("Inmueble: "+contrato.getInmueble().getDireccion());
         tvContratoId.setText("Detalles del contrato #"+contrato.getIdContrato());
+        btInmuebleContrato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navegar a los detalles del inmueble de este contrato
+                Bundle b = new Bundle();
+                b.putSerializable("inmueble", contrato.getInmueble());
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_inmueble, b);
+            }
+        });
     }
 }
