@@ -22,7 +22,7 @@ import com.grupo4.inmobiliaria.ui.ui.inmuebles.InmuebleViewModel;
 public class ContratoFragment extends Fragment {
 
     private ContratoViewModel contratoViewModel;
-    private TextView tvFechaInicio, tvFechaFin, tvInquilino, tvInmueble, tvMonto;
+    private TextView tvFechaInicio, tvFechaFin, tvInquilino, tvInmueble, tvMonto, tvContratoId;
 
     private Contrato contrato;
 
@@ -37,11 +37,12 @@ public class ContratoFragment extends Fragment {
         contratoViewModel.getContratoMutable().observe(getViewLifecycleOwner(), new Observer<Contrato>() {
             @Override
             public void onChanged (Contrato contrato) {
-                tvFechaInicio.setText(contrato.getFechaInicio());
-                tvFechaFin.setText(contrato.getFechaFin());
-                tvMonto.setText(contrato.getMontoAlquiler() + "");
-                tvInquilino.setText(contrato.getInquilino().getNombre() + " "+ contrato.getInquilino().getApellido());
-                tvInmueble.setText(contrato.getInmueble().getDireccion());
+                tvFechaInicio.setText("Fecha de inicio: "+contrato.getFechaInicio());
+                tvFechaFin.setText("Fecha de fin: "+contrato.getFechaFin());
+                tvMonto.setText("Precio por mes: $"+contrato.getMontoAlquiler());
+                tvInquilino.setText("Inquilino: "+contrato.getInquilino().getNombre() + " "+ contrato.getInquilino().getApellido());
+                tvInmueble.setText("Inmueble: "+contrato.getInmueble().getDireccion());
+                tvContratoId.setText("Detalles del contrato #"+contrato.getIdContrato());
             }
         });
         contratoViewModel.LeerContrato(getArguments());
@@ -54,6 +55,7 @@ public class ContratoFragment extends Fragment {
         tvMonto = root.findViewById(R.id.tvMontoAlquiler);
         tvInquilino = root.findViewById(R.id.tvInquilino);
         tvInmueble = root.findViewById(R.id.tvInmueble);
+        tvContratoId = root.findViewById(R.id.tvContratoId);
     }
 }
 

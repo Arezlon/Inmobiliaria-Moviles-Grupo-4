@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.grupo4.inmobiliaria.modelo.Contrato;
 import com.grupo4.inmobiliaria.modelo.Inmueble;
+import com.grupo4.inmobiliaria.request.ApiClient;
 
 public class ContratoViewModel extends ViewModel {
 
@@ -20,8 +21,8 @@ public class ContratoViewModel extends ViewModel {
         return contratoMutable;
     }
 
-    public void LeerContrato(Bundle bungle){
-        Contrato contrato = (Contrato)bungle.getSerializable("contrato");
+    public void LeerContrato(Bundle bundle){
+        Contrato contrato = ApiClient.getApi().obtenerContratoVigente((Inmueble) bundle.getSerializable("inmueble"));
         contratoMutable.setValue(contrato);
     }
 }
