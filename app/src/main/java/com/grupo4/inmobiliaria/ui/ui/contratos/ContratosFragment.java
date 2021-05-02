@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ public class ContratosFragment extends Fragment {
 
     private ContratosViewModel contratosViewModel;
     private ListView lvContratos;
+    private TextView tvNoContratos;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,12 +37,17 @@ public class ContratosFragment extends Fragment {
         contratosViewModel.getInmueblesMutable().observe(getViewLifecycleOwner(), new Observer<ArrayList<Inmueble>>() {
             @Override
             public void onChanged(ArrayList<Inmueble> inmuebles) {
+                if(inmuebles.isEmpty()){
+                    tvNoContratos.setVisibility(View.VISIBLE);
+                    tvNoContratos.setText("No existen contratos vigentes con sus inmuebles.");
+                } else {
+                    tvNoContratos.setVisibility(View.INVISIBLE);
+                    ArrayAdapter<Inmueble> adapter = new ListaInmueblesAdapter(getContext(),
+                            R.layout.list_item_inmueble, inmuebles,
+                            getLayoutInflater(), R.id.nav_contrato);
 
-                ArrayAdapter<Inmueble> adapter = new ListaInmueblesAdapter(getContext(),
-                        R.layout.list_item_inmueble, inmuebles,
-                        getLayoutInflater(), R.id.nav_contrato);
-
-                lvContratos.setAdapter(adapter);
+                    lvContratos.setAdapter(adapter);
+                }
             }
         });
         contratosViewModel.LeerInmueblesAlquilados();
@@ -49,6 +56,7 @@ public class ContratosFragment extends Fragment {
     }
 
     private void InicializarVista(View root){
+        tvNoContratos = root.findViewById(R.id.tvNoContratos);
         lvContratos = root.findViewById(R.id.lvContratos);
     }
 }

@@ -71,7 +71,7 @@ public class ContratoFragment extends Fragment {
         tabLayout = new TabLayout(getContext());
         appBar.addView(tabLayout);
 
-        if (contrato != null && !pagos.isEmpty()){
+        if (contrato != null){
             ViewPageAdapter vpa = new ViewPageAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             vpa.addFragment(new TabContratoFragment(contrato), "Contrato");
             vpa.addFragment(new TabInquilinoFragment(contrato.getInquilino()), "Inquilino");

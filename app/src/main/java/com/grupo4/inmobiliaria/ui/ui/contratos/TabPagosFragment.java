@@ -20,6 +20,7 @@ import java.util.List;
 public class TabPagosFragment extends Fragment {
     private List<Pago> pagos;
     private ListView lvPagos;
+    private TextView tvNoPagos;
 
     public TabPagosFragment(List<Pago> pagos){
         this.pagos = pagos;
@@ -31,13 +32,20 @@ public class TabPagosFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_tab_pagos, container, false);
         inicializarVista(root);
 
-        ArrayAdapter<Pago> adapter = new ListaPagosAdapter(getContext(), R.layout.list_item_pago, pagos, getLayoutInflater());
-        lvPagos.setAdapter(adapter);
+        if (pagos.isEmpty()){
+            tvNoPagos.setVisibility(View.VISIBLE);
+            tvNoPagos.setText("No se realizaron pagos en este contrato.");
+        } else {
+            tvNoPagos.setVisibility(View.INVISIBLE);
+            ArrayAdapter<Pago> adapter = new ListaPagosAdapter(getContext(), R.layout.list_item_pago, pagos, getLayoutInflater());
+            lvPagos.setAdapter(adapter);
+        }
 
         return root;
     }
 
     private void inicializarVista(View root){
+        tvNoPagos = root.findViewById(R.id.tvNoPagos);
         lvPagos = root.findViewById(R.id.lvPagos);
     }
 }

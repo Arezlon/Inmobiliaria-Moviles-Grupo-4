@@ -7,10 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.ui.contratos.TabPagosFragment">
 
+    <TextView
+        android:id="@+id/tvNoPagos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/lvPagos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="129dp" />
+        android:layout_height="match_parent">
+    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
