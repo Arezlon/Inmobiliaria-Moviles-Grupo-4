@@ -97,13 +97,15 @@ public class EditarPerfilFragment extends Fragment {
         btGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                propietarioActual.setNombre(etEditarNombreUsuario.getText().toString());
-                propietarioActual.setApellido(etEditarApellidoUsuario.getText().toString());
-                propietarioActual.setDni(TextUtils.isEmpty(etEditarDniUsuario.getText())? -1 : Long.parseLong(etEditarDniUsuario.getText().toString()));
-                propietarioActual.setEmail(etEditarEmailUsuario.getText().toString());
-                propietarioActual.setTelefono(etEditarTelefonoUsuario.getText().toString());
+                Propietario p = propietarioActual;
 
-                editarPerfilViewModel.ModificarPropietario(propietarioActual);
+                p.setNombre(etEditarNombreUsuario.getText().toString());
+                p.setApellido(etEditarApellidoUsuario.getText().toString());
+                p.setDni(TextUtils.isEmpty(etEditarDniUsuario.getText())? -1 : Long.parseLong(etEditarDniUsuario.getText().toString()));
+                p.setEmail(etEditarEmailUsuario.getText().toString());
+                p.setTelefono(etEditarTelefonoUsuario.getText().toString());
+
+                editarPerfilViewModel.ModificarPropietario(p);
             }
         });
     }
