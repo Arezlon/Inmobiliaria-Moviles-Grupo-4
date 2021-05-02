@@ -14,7 +14,7 @@ import com.grupo4.inmobiliaria.modelo.Inquilino;
 
 public class TabInquilinoFragment extends Fragment {
     private Inquilino inquilino;
-    private TextView tv1;
+    private TextView tvIdInquilino, tvNombreCompletoInquilino, tvDniInquilino, tvTrabajoInquilino, tvEmailInquilino, tvTelefonoInquilino, tvNombreCompletoGarante, tvTelefonoGarante;
 
     public TabInquilinoFragment(Inquilino inquilino){
         this.inquilino = inquilino;
@@ -30,7 +30,21 @@ public class TabInquilinoFragment extends Fragment {
     }
 
     private void inicializarVista(View root){
-        tv1 = root.findViewById(R.id.tv1);
-        tv1.setText(inquilino.getNombre() + " " + inquilino.getApellido());
+        tvIdInquilino = root.findViewById(R.id.tvIdInquilino);
+        tvIdInquilino.setText("Inquilino #" + inquilino.getIdInquilino());
+        tvNombreCompletoInquilino = root.findViewById(R.id.tvNombreCompletoInquilino);
+        tvNombreCompletoInquilino.setText("Nombre: " + inquilino.getNombre() + " " + inquilino.getApellido());
+        tvDniInquilino = root.findViewById(R.id.tvDniInquilino);
+        tvDniInquilino.setText("DNI: " + inquilino.getDNI());
+        tvTrabajoInquilino = root.findViewById(R.id.tvTrabajoInquilino);
+        tvTrabajoInquilino.setText("Lugar de trabajo: " + inquilino.getLugarDeTrabajo());
+        tvEmailInquilino = root.findViewById(R.id.tvEmailInquilino);
+        tvEmailInquilino.setText("E-Mail: " + inquilino.getEmail());
+        tvTelefonoInquilino = root.findViewById(R.id.tvTelefonoInquilino);
+        tvTelefonoInquilino.setText("Teléfono: " + inquilino.getTelefono());
+        tvNombreCompletoGarante = root.findViewById(R.id.tvNombreCompletoGarante);
+        tvNombreCompletoGarante.setText("Nombre: " + inquilino.getNombreGarante());
+        tvTelefonoGarante = root.findViewById(R.id.tvTelefonoGarante);
+        tvTelefonoGarante.setText("Teléfono: " + inquilino.getTelefonoGarante());
     }
 }
